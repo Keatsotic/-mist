@@ -37,7 +37,7 @@ namespace Mist
 
             ResolutionManager.Init(ref graphics);
             ResolutionManager.SetVirtualResolution(400, 240);
-            ResolutionManager.SetResolution(1920, 1080, true);
+            ResolutionManager.SetResolution(1920, 1080, false);
 
             _screenManager = Components.Add<ScreenManager>();
 
@@ -45,7 +45,6 @@ namespace Mist
 
         protected override void Initialize()
         {
-
             Camera2D.Initialize();
             _screenManager.Initialize();
 
@@ -57,7 +56,6 @@ namespace Mist
 
             var transition = new FadeTransition(GraphicsDevice, Color.Black, 0.5f);
             _screenManager.LoadScreen(new TitleScreen(this), transition);
-
         }
 
         protected override void UnloadContent()
@@ -70,9 +68,8 @@ namespace Mist
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            
             InputManager.Update();
-            
+
             base.Update(gameTime);
         }
 
@@ -90,7 +87,7 @@ namespace Mist
                 FpsCounter = 0;
                 _counterElapsed -= TimeSpan.FromSeconds(1);
             }
-            
+
             base.Draw(gameTime);
         }
     }

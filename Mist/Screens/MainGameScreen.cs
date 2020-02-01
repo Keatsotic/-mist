@@ -18,21 +18,30 @@ namespace Mist.Screens
 
         private int doorTimer;
 
+        private WindowManager windowManager;
+
         public MainGameScreen(Game game)
             : base(game)
         {
             mapManager = new MapManager(Global.levelName, Game1.graphics, Content);
+
+
+            windowManager = new WindowManager();
+            windowManager.Initialize();
         }
 
         public override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            windowManager.Load(Content);
             base.LoadContent();
         }
 
         public override void Update(GameTime gameTime)
         {
             mapManager.Update(gameTime);
+            windowManager.Update(gameTime);
 
             if (mapManager.enterDoor)
             {
@@ -66,6 +75,16 @@ namespace Mist.Screens
                                    Camera2D.GetTransformMatrix());
 
             mapManager.Draw(spriteBatch);
+            spriteBatch.End();
+
+            spriteBatch.Begin(SpriteSortMode.FrontToBack,
+                              BlendState.AlphaBlend,
+                              SamplerState.PointClamp,
+                              null,
+                              null,
+                              null,
+                              ResolutionManager.GetTransformationMatrix());
+            windowManager.Draw(spriteBatch);
 
             spriteBatch.End();
         }

@@ -68,6 +68,12 @@
     <Compile Include="GameObjects\Player\Player4.cs" />
     <Compile Include="Map\TileCollisionDoor.cs" />
     <Compile Include="Utilities\Window.cs" />
+    <Compile Include="Manager\WindowManager.cs" />
+    <Compile Include="MenuSystem\BaseMenu.cs" />
+    <Compile Include="MenuSystem\InventoryMenu.cs" />
+    <Compile Include="MenuSystem\StatusMenu.cs" />
+    <Compile Include="MenuSystem\EquipMenu.cs" />
+    <Compile Include="MenuSystem\DialogueBox.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
